@@ -18,18 +18,28 @@ Output feature vectors have 512 channels representing a 64 pixel span (~0.3 seco
 ## Results
 
 The entirety of each song was processed via the feature extractor with the resulting song matrix averaged across the song length into a single vector. UMAP is used for visualization and HDBSCAN for cluster extraction producing the following plot:
- 
+
+![](../main/images/UMAPclusters.PNG)
+
 Each color represents a cluster (numbered 0-16) of similar songs based on the learned features. Immediately we can see a very clear structure in the data, showing the meaningful features have been learned. We can also color the points by year of release:
- 
+
+![](../main/images/UMAPyears.PNG)
+
 Points are colored form oldest (dark) to newest (light). As expected, the distribution of music has changed over the last 60 years. This gives us some confidence that the learned features are meaningful but let’s try a more specific test. A gradient boosting regressor model is trained on the learned features to predict the release year of a song.
- 
+
+![](../main/images/PredYear.PNG)
+
 The model achieves an overall mean absolute error of ~6.2 years. The violin and box plots show the distribution of predictions for songs in each year. This result is surprisingly good considering we wouldn’t expect a model get anywhere near perfect. The plot shows some interesting trends in how the predicted median and overall variance shift from year to year. Notice, for example, the high variance and rapid median shift across the years 1990 to 2000 compared to the decades before and after. This hints at some potential significant changes in the structure of music during this decade. Those with a knowledge of modern musical history probably already have some ideas in mind. Again, it’s worth noting that this dataset represents generically popular music which we would expect to lag behind specific music trends (probably by as much as 5-10 years).
 
 Let’s bring back the 17 clusters that were identified previously and look at the distribution of release years of songs in each cluster. The black grouping labeled -1 captures songs which were not strongly allocated to any particular cluster and is simply included for completeness.
- 
+
+![](../main/images/ClusterDistribution.PNG)
+
 Here again we see some interesting trends of clusters emerging, peaking, and even dying out at various points in time. Aligning with out previous chart, we see four distinct clusters (7, 10, 11, 12) die off in the 90s while two brand new clusters (3, 4) emerge. Other clusters (8, 9, 15), interestingly, span most or all of the time range.
 
 We can also look at the relative allocation of songs to clusters by year to get a better sense of the overall size of each cluster.
+
+![](../main/images/StackedClusters.PNG)
 
 
 ## Cluster Samples
@@ -97,7 +107,7 @@ So what exactly are these clusters? I’ve provided links below to ten represent
 * [Khalid - Better](https://open.spotify.com/track/6zeeWid2sgw4lap2jV61PZ)
 
 **Cluster 5**
-* [Barbra Streisand - The Main EventFight]()
+* [Barbra Streisand - The Main EventFight](https://open.spotify.com/track/2g5jMKl1csCP8Ufp1rUnqC)
 * [Peaches & Herb - Close Your Eyes](https://open.spotify.com/track/774ZoGBhlMSZd7nI2zojbc)
 * [Air Supply - The One That You Love](https://open.spotify.com/track/3FDAd5vW4P7xe1GBNOLyfD)
 * [Brian Hyland - Itsy Bitsy Teenie Weenie Yellow Polka Dot Bikini](https://open.spotify.com/track/3B3jI9LaQyOwrtjdlnNOw0)
