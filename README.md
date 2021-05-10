@@ -7,6 +7,9 @@ Songs on the Billboard Year End Hot 100 were collected from the years 1960-2020.
 
 Raw audio files were processed into spectrograms using a synchrosqueeze CWT algorithm from the Pyssqueeze python library. Some additional cleaning and postprocessing was done and the spectrograms were saved as grayscale images. These images are structured so that the Y axis which spans 256 pixels represents a range of frequencies from 30Hz – 12kHz with a log scale. The X axis represents time with a resolution of 200 pixels per second. Pixel intensity therefore encodes the signal energy at a particular frequency at a moment in time.
 
+The full dataset can be found here:
+https://www.kaggle.com/tpapp157/billboard-hot-100-19602020-spectrograms
+
 
 ## Model and Training
 
